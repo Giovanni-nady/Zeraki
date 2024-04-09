@@ -9,8 +9,8 @@ export default function Navbar() {
         >
             <div className="container">
                 <Link className="navbar-brand d-flex align-items-center" href="#home">
-                    <img src={logo} width={30} alt="zeraki logo" />
-                    <span className='ms-2'>Zeraki</span></Link>
+                    <img src={logo} width={35} alt="zeraki logo" />
+                    <span className='ms-1 fw-bold fs-4'>Zeraki</span></Link>
                 <button
                     className="navbar-toggler d-lg-none"
                     type="button"
