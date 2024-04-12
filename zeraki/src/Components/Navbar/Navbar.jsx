@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Style from './Navbar.module.css'
 import { Link } from 'react-router-dom'
 import logo  from '../../assets/main.svg'
+import { CounterContext } from '../../Context/CounterContext.js'
 export default function Navbar() {
+
+    let { counter } = useContext(CounterContext)
     return <>
         <nav
             className="navbar sticky-top navbar-expand-sm navbar-light bg-light"
@@ -25,7 +28,7 @@ export default function Navbar() {
                 <div className="collapse navbar-collapse" id="collapsibleNavId">
                     <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                         <li className="nav-item">
-                            <Link className="nav-link nav-link-hover" to="/">Home</Link>
+                            <Link className="nav-link nav-link-hover" to="/">Home {counter}</Link>
                         </li>
                         <li className="nav-item">
                             <Link className="nav-link nav-link-hover" to="/products">Products</Link>

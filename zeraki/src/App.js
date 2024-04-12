@@ -12,6 +12,7 @@ import Products from './Components/Products/Products';
 import Brands from './Components/Brands/Brands';
 import Cart from './Components/Cart/Cart';
 import Categories from './Components/Categories/Categories';
+import CounterContextProvider from './Context/CounterContext.js';
 
 
 const routers = createBrowserRouter([
@@ -33,7 +34,9 @@ const routers = createBrowserRouter([
 function App() {
 
   return <>
+    <CounterContextProvider>
     <RouterProvider router={routers} />
+    </CounterContextProvider>
   </>
 }
 

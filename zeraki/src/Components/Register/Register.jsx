@@ -1,21 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Style from './Register.module.css'
 import { Formik, Form, Field, ErrorMessage, useFormik } from 'formik';
 import * as Yup from 'yup';
-
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import { Bars } from 'react-loader-spinner'
 export default function Register() {
 
-    // const validationSchema = Yup.object().shape({
-    //     email: Yup.string().email('Invalid email').required('Required'),
-    //     password: Yup.string().required('Required'),
-    // });
+    let navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
 
-    const onSubmit = (values, { setSubmitting }) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-        }, 400);
+    const onSubmit = async (values, { setSubmitting }) => {
+        setLoading(true)
+
+        await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/auth/signup`, values)
+            .then((response) => {
+                console.log(response);
+                if (response.data.message === 'success') {
+                    navigate('/login')
+                }
+            }).catch((error) => {
+                notify(error.response.data.message)
+                console.log(error);
+            }).finally(() => {
+                setLoading(false)
+            })
+
     }
+
+    const notify = (message) => {
+        toast.error(`${message}`, {
+            position: "bottom-right"
+        });
+    };
 
     const phoneRegex = /^\+(?:[0-9] ?){6,14}[0-9]$/;
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
@@ -71,10 +89,26 @@ export default function Register() {
                 <input type="password" className='form-control mb-4' id="rePassword" name="rePassword" value={formik.values.rePassword} onChange={formik.handleChange} onBlur={formik.handleBlur} />
                 {formik.errors.rePassword && formik.touched.rePassword && <div className="alert alert-danger p-2 mt-2">{formik.errors.rePassword}</div>}
 
-                <button disabled={!formik.isValid || !formik.dirty} type="submit" className='btn bg-main text-white'>
-                    Register
-                </button>
+                {loading ?
+                    <button type="button" className='btn bg-main text-white px-4'>
+                        <Bars
+                            height="23"
+                            width="25"
+                            color="white"
+                            ariaLabel="bars-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                        />
+                    </button>
+                    :
+                    <button disabled={!formik.isValid || !formik.dirty} type="submit" className='btn bg-main text-white'>
+                        Register
+                    </button>
+                }
             </form>
+                
+            <ToastContainer />
         </div>
     </>
 }
