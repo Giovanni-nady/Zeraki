@@ -13,29 +13,40 @@ import Brands from './Components/Brands/Brands';
 import Cart from './Components/Cart/Cart';
 import Categories from './Components/Categories/Categories';
 import CounterContextProvider from './Context/CounterContext.js';
+import UserContextProvider, { UserContext } from './Context/UserContext.js';
+import { useContext, useEffect } from 'react';
+import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx';
+import ProductDetails from './Components/ProductDetails/ProductDetails.jsx';
 
 
 const routers = createBrowserRouter([
   {
     path: '/', element: <Layout />, children: [
-      { index: true, element: <Home /> },
+      { index: true, element: <ProtectedRoute><Home /></ProtectedRoute> },
       { path: 'login', element: <Login /> },
-      { path: 'home', element: <Home /> },
       { path: 'register', element: <Register /> },
-      { path: 'products', element: <Products /> },
-      { path: 'brands', element: <Brands /> },
-      { path: 'cart', element: <Cart /> },
-      { path: 'categories', element: <Categories /> },
+      { path: 'products', element: <ProtectedRoute><Products /></ProtectedRoute> },
+      { path: 'productDetails/:productID', element: <ProtectedRoute><ProductDetails /></ProtectedRoute> },
+      { path: 'brands', element: <ProtectedRoute><Brands /></ProtectedRoute> },
+      { path: 'cart', element: <ProtectedRoute><Cart /></ProtectedRoute> },
+      { path: 'categories', element: <ProtectedRoute><Categories /></ProtectedRoute> },
       { path: '*', element: <NotFound /> },
     ],
   }
 ]);
 
 function App() {
+  
+  let { setUserToken } = useContext(UserContext)
+
+  useEffect(() => {
+    if (localStorage.getItem('userTkn') !== null)
+      setUserToken(localStorage.getItem('userTkn'))
+  }, [])
 
   return <>
     <CounterContextProvider>
-    <RouterProvider router={routers} />
+      <RouterProvider router={routers} />
     </CounterContextProvider>
   </>
 }

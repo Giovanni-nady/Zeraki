@@ -25,6 +25,7 @@ a , a:hover{
 }
 .nav-link-hover{
   position: relative;
+  transition: 0.7s;
 }
 .nav-link-hover::after{
   content:"";
@@ -35,8 +36,9 @@ a , a:hover{
   height:2px;
   background-color: var(--main-color);
   transform: scaleX(0);
-  transition: 0.7s;
+  transition: 0.7s; 
 }
+
 .nav-link-hover:hover::after{
   transform: scaleX(0.8);
 }

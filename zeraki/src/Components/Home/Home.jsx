@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Style from './Home.module.css'
 import { CounterContext } from '../../Context/CounterContext.js'
+import FeaturedProducts from './FeaturedProducts/FeaturedProducts.jsx'
 
 export default function Home() {
 
@@ -27,9 +28,6 @@ export default function Home() {
     let { changeCounter } = useContext(CounterContext)
 
     return <>
-        <div className="vh-100 bg-danger">
-            <h1>Home</h1>
-            <button onClick={changeCounter} className='btn btn-primary'>Click</button>
-        </div>
+            <FeaturedProducts/>
     </>
 }

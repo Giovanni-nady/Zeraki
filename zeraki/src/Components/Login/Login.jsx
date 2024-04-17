@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Style from './Login.module.css'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -6,10 +6,12 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import { Bars } from 'react-loader-spinner'
+import { UserContext } from '../../Context/UserContext.js';
 
 export default function Login() {
 
     let navigate = useNavigate();
+    let { setUserToken } = useContext(UserContext);
     const [loading, setLoading] = useState(false)
 
     const onSubmit = async (values, { setSubmitting }) => {
@@ -19,7 +21,9 @@ export default function Login() {
             .then((response) => {
                 console.log(response);
                 if (response.data.message === 'success') {
-                    navigate('/home')
+                    localStorage.setItem("userTkn", response.data.token)
+                    setUserToken(response.data.token)
+                    navigate('/')
                 }
             }).catch((error) => {
                 notify(error.response.data.message)
