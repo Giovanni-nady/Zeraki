@@ -42,6 +42,9 @@ export default function Navbar() {
                                 <Link className="nav-link nav-link-hover" to="/">Home {counter}</Link>
                             </li>
                             <li className="nav-item">
+                                <Link className="nav-link nav-link-hover" to="/cart">Cart</Link>
+                            </li>
+                            <li className="nav-item">
                                 <Link className="nav-link nav-link-hover" to="/products">Products</Link>
                             </li>
                             <li className="nav-item">
@@ -49,9 +52,6 @@ export default function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link nav-link-hover" to="/brands">Brands</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link nav-link-hover" to="/cart">Cart</Link>
                             </li>
                         </>}
                     </ul>
@@ -84,7 +84,7 @@ export default function Navbar() {
                                 </li></>
                             :
                             <li className="nav-item nav-link-hover">
-                                <span onClick={() => logout()} className="nav-link courser-pointer">Logout</span>
+                                <span onClick={() => logout()} className="nav-link cursor-pointer">Logout</span>
                             </li>
                         }
                     </ul>

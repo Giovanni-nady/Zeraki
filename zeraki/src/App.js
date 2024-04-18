@@ -17,6 +17,7 @@ import UserContextProvider, { UserContext } from './Context/UserContext.js';
 import { useContext, useEffect } from 'react';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx';
 import ProductDetails from './Components/ProductDetails/ProductDetails.jsx';
+import CartContextProvider from './Context/CartContext.js';
 
 
 const routers = createBrowserRouter([
@@ -44,10 +45,11 @@ function App() {
       setUserToken(localStorage.getItem('userTkn'))
   }, [])
 
-  return <>
+  return <><CartContextProvider>
     <CounterContextProvider>
       <RouterProvider router={routers} />
     </CounterContextProvider>
+  </CartContextProvider>
   </>
 }
 

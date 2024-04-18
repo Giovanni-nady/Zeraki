@@ -75,3 +75,6 @@ a , a:hover{
 {
     background-color: var(--light-color) !important;
 }
+.vh-75{
+    height: 75svh;
+}

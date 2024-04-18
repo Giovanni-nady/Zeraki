@@ -1,12 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Style from './Home.module.css'
-import { CounterContext } from '../../Context/CounterContext.js'
+import React from 'react'
 import FeaturedProducts from './FeaturedProducts/FeaturedProducts.jsx'
+import CategorySlider from './CategorySlider/CategorySlider.jsx'
+import MainSlider from './MainSlider/MainSlider.jsx';
 
 export default function Home() {
 
     // best way to make search
-    
+
     // const [searchText, setSearchText] = useState('')
 
     // useEffect(() => {
@@ -25,9 +25,10 @@ export default function Home() {
     //     }
     // }, [searchText])
 
-    let { changeCounter } = useContext(CounterContext)
 
     return <>
-            <FeaturedProducts/>
+        <MainSlider />
+        <CategorySlider />
+        <FeaturedProducts />
     </>
 }
