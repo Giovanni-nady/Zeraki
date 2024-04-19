@@ -107,8 +107,6 @@ export default function Register() {
                     </button>
                 }
             </form>
-                
-            <ToastContainer />
         </div>
     </>
 }

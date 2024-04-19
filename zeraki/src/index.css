@@ -78,3 +78,19 @@ a , a:hover{
 .vh-75{
     height: 75svh;
 }
+.detect-offline{
+    padding: 20px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    border-radius: 15px;
+    background-color: var(--light-color);
+    box-shadow: var(--shadow);
+}
+.border-main{
+    border:1px solid var(--main-color);
+}
+.border-main:hover{
+background-color: var(--main-color);
+color: white;
+}

@@ -94,8 +94,6 @@ export default function Login() {
                     </button>
                 }
             </form>
-
-            <ToastContainer />
         </div>
     </>
 }

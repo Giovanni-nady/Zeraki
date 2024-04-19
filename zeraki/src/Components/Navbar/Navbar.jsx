@@ -18,7 +18,7 @@ export default function Navbar() {
 
     return <>
         <nav
-            className="navbar sticky-top navbar-expand-sm navbar-light bg-light"
+            className="navbar sticky-top navbar-expand-md navbar-light bg-light"
         >
             <div className="container">
                 <Link className="navbar-brand d-flex align-items-center" href="#home">
@@ -39,10 +39,7 @@ export default function Navbar() {
                     <ul className="navbar-nav me-auto mt-2 mt-lg-0">
                         {userToken && <>
                             <li className="nav-item">
-                                <Link className="nav-link nav-link-hover" to="/">Home {counter}</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link nav-link-hover" to="/cart">Cart</Link>
+                                <Link className="nav-link nav-link-hover" to="/">Home</Link>
                             </li>
                             <li className="nav-item">
                                 <Link className="nav-link nav-link-hover" to="/products">Products</Link>
@@ -53,6 +50,7 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link nav-link-hover" to="/brands">Brands</Link>
                             </li>
+
                         </>}
                     </ul>
                     <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
@@ -82,10 +80,14 @@ export default function Navbar() {
                                 <li className="nav-item">
                                     <Link className="nav-link nav-link-hover" to="/register">Register</Link>
                                 </li></>
-                            :
-                            <li className="nav-item nav-link-hover">
-                                <span onClick={() => logout()} className="nav-link cursor-pointer">Logout</span>
-                            </li>
+                            : <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/cart"><i className='fa fa-cart-shopping'></i></Link>
+                                </li>
+                                <li className="nav-item nav-link-hover">
+                                    <span onClick={() => logout()} className="nav-link cursor-pointer">Logout</span>
+                                </li>
+                            </>
                         }
                     </ul>
 

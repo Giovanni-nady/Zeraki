@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useQuery } from 'react-query'
 import LoadingForSection from '../LoadingForSection/LoadingForSection.jsx'
+import { Helmet } from "react-helmet";
 
 export default function ProductDetails() {
     // /api/v1/products/${productID}
@@ -22,7 +23,11 @@ export default function ProductDetails() {
             <div className="d-flex justify-content-center align-items-center vh-75">
                 <LoadingForSection/>
             </div>
-            :
+            : <>
+                <Helmet>
+                    <title>{productData?.title}</title>
+                    <meta name="description" content={productData?.description} />
+                </Helmet>
             <section className="row py-2 align-items-center">
                 <div className="col-md-4">
                     <img src={productData?.imageCover} alt={productData?.title} className="w-100" />
@@ -42,7 +47,8 @@ export default function ProductDetails() {
 
                     <button className="btn bg-main text-white w-100 mt-2">+ Add to cart</button>
                 </div>
-            </section>
+                </section>
+                </>
         }
     </>
 }

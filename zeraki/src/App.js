@@ -18,6 +18,7 @@ import { useContext, useEffect } from 'react';
 import ProtectedRoute from './Components/ProtectedRoute/ProtectedRoute.jsx';
 import ProductDetails from './Components/ProductDetails/ProductDetails.jsx';
 import CartContextProvider from './Context/CartContext.js';
+import { ToastContainer } from 'react-toastify';
 
 
 const routers = createBrowserRouter([
@@ -50,6 +51,8 @@ function App() {
       <RouterProvider router={routers} />
     </CounterContextProvider>
   </CartContextProvider>
+    <ToastContainer />
+
   </>
 }
 

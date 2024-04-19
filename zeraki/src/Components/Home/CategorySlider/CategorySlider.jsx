@@ -22,8 +22,8 @@ export default function CategorySlider() {
         dotsClass: "slick-dots slick-thumb",
         infinite: true,
         speed: 500,
-        slidesToShow: 7,
-        slidesToScroll: 7,
+        slidesToShow: 6,
+        slidesToScroll: 6,
     };
     
     
@@ -33,7 +33,7 @@ export default function CategorySlider() {
             <div className="py-4 slider-container">
                 <Slider {...settings}>
                     {categories.map((category) => (
-                        <img src={category?.image} height={200} className='w-100' alt="category img" />
+                        <img src={category?.image} height={200} className='w-100 object-fit-cover' alt="category img" />
                     ))}
                 </Slider>
             </div>
