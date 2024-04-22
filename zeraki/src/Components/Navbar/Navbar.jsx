@@ -81,8 +81,12 @@ export default function Navbar() {
                                     <Link className="nav-link nav-link-hover" to="/register">Register</Link>
                                 </li></>
                             : <>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/cart"><i className='fa fa-cart-shopping'></i></Link>
+                                <li className="nav-item me-3">
+                                    <Link className="nav-link  position-relative" to="/cart"><i className='fa fa-cart-shopping'></i>
+                                        <span class="position-absolute start-100 translate-middle badge rounded-pill bg-danger">
+                                            9+
+                                        </span>
+                                    </Link>
                                 </li>
                                 <li className="nav-item nav-link-hover">
                                     <span onClick={() => logout()} className="nav-link cursor-pointer">Logout</span>

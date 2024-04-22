@@ -20,10 +20,28 @@ export default function CartContextProvider(props) {
     }
 
     function getCart() {
-        return axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/cart`, {headers})
+        return axios.get(`${process.env.REACT_APP_BASE_URL}/api/v1/cart`, { headers })
     }
 
-    return <CartContext.Provider value={{ addToCart, getCart }}>
+    function removeCartItem(ProductID) {
+        return axios.delete(`${process.env.REACT_APP_BASE_URL}/api/v1/cart/${ProductID}`, { headers })
+            .then((response) => response)
+            .catch((error) => error)
+    }
+    
+    function updateCartQuantity(ProductID, count) {
+        return axios.put(`${process.env.REACT_APP_BASE_URL}/api/v1/cart/${ProductID}`, {count}, { headers })
+        .then((response) => response)
+        .catch((error) => error)
+    }
+    
+    async function clearCart() {
+        return await axios.delete(`${process.env.REACT_APP_BASE_URL}/api/v1/cart`, { headers })
+            .then((response) => response)
+            .catch((error) => error)
+    }
+
+    return <CartContext.Provider value={{ addToCart, getCart, removeCartItem, updateCartQuantity, clearCart }}>
         {props.children}
     </CartContext.Provider>
 }
